@@ -6,7 +6,7 @@
         <title>CSS-Gradient Palette</title>
         <meta name="description" content="A palette of gradients for quick insertion into css. A large selection of gradients.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css?v=9">
+        <link rel="stylesheet" href="style.css?v=11">
 
         <link rel="shortcut icon" href="mf/favicon.ico" type="image/x-icon">
         <link rel="icon" href="mf/favicon.ico" type="image/x-icon">
@@ -137,6 +137,7 @@
 
             function setGradient(_type = 'linear', _deg = 0) {
                 var palettes = document.getElementsByClassName('palette_color');
+                var procent = document.getElementsByClassName('procent');
                 var deg = _deg + 'deg, ';
                 if (_type == 'radial') {
                     deg = '';
@@ -144,7 +145,11 @@
 
                 var colors = '';
                 for (i = 0; i < palettes.length; i++) {
-                    colors += palettes[i].value.toUpperCase();
+                    var procent_r = '';
+                    if ((procent[i].value) >= 1) {
+                        procent_r = ' ' + procent[i].value + '%'
+                    }
+                    colors += palettes[i].value.toUpperCase() + procent_r;
                     if ((i + 1) < palettes.length) {
                         colors += ', ';
                     }
@@ -181,13 +186,24 @@
                     container__input.classList.add('palette_color');
                     container__input.setAttribute('id', mkid);
 
+                var container__procent = document.createElement('input');
+                    container__procent.classList.add('procent');
+                    container__procent.setAttribute('type', 'number');
+                    container__procent.setAttribute('max', 100);
+                    container__procent.setAttribute('min', 0);
+                    container__procent.setAttribute('minlength', 1);
+                    container__procent.setAttribute('maxlength', 3);
+                    container__procent.setAttribute('value', 0);
+
                 container__color_palette.appendChild(container__input);
+                container__color_palette.appendChild(container__procent);
                 container__color_palette.appendChild(action_remove);
                 // container__color_palette.appendChild(action_drag);
 
                 document.getElementById('list_palettes').appendChild(container__color_palette);
 
                 container__input.addEventListener('change', updChangeColor, false);
+                container__procent.addEventListener('change', updChangeColor, false);
 
                 setGradient(type_def, deg_def);
             }
