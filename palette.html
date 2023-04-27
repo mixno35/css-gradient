@@ -6,7 +6,7 @@
         <title>CSS-Gradient Palette</title>
         <meta name="description" content="A palette of gradients for quick insertion into css. A large selection of gradients.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css?v=8">
+        <link rel="stylesheet" href="style.css?v=9">
 
         <link rel="shortcut icon" href="mf/favicon.ico" type="image/x-icon">
         <link rel="icon" href="mf/favicon.ico" type="image/x-icon">
@@ -55,9 +55,13 @@
                     <ol id="list_palettes">
                     </ol>
                     <button class="button-10" id="action_add__color">Add color</button>
+                    <ul class="tabs_selected">
+                        <li id="tab_linear" class="active">Linear</li>
+                        <li id="tab_radial">Radial</li>
+                    </ul>
                 </div>
 
-                <div class="split__lb_inpt">
+                <div class="split__lb_inpt" id="split__lb_inpt_deg" style="visibility: visible;">
                     <label for="number_deg_gradient">Enter the gradient rotation radius</label>
                     <input type="number" id="number_deg_gradient" min="-360" max="360" maxlength="4" minlength="1" value="180">
                 </div>
@@ -66,8 +70,30 @@
 
         <script src="main.js?v=2"></script>
         <script async defer>
+            var type_def = 'linear';
+            var deg_def = 180;
+
             addColor('#8f8f8f');
             addColor('#d4d4d4');
+
+            document.getElementById('tab_linear').addEventListener('click', () => {
+                document.getElementById('tab_radial').classList.remove('active');
+                document.getElementById('tab_linear').classList.add('active');
+
+                type_def = 'linear';
+                setGradient(type_def, deg_def);
+
+                document.getElementById('split__lb_inpt_deg').style.visibility = 'visible';
+            });
+            document.getElementById('tab_radial').addEventListener('click', () => {
+                document.getElementById('tab_radial').classList.add('active');
+                document.getElementById('tab_linear').classList.remove('active');
+
+                type_def = 'radial';
+                setGradient(type_def, deg_def);
+
+                document.getElementById('split__lb_inpt_deg').style.visibility = 'hidden';
+            });
 
             document.getElementById('number_deg_gradient').addEventListener('change', (e) => {
                 deg_def = e.target.value;
@@ -86,9 +112,6 @@
                console.log(_event.target.value);
                setGradient(type_def, deg_def);
             }
-
-            var type_def = 'linear';
-            var deg_def = 180;
 
             var gh_header = document.getElementById('header__page').offsetHeight;
                 document.getElementById('centered__cont_palettes').style.marginTop = gh_header + 'px';
@@ -127,7 +150,13 @@
                     action_remove.setAttribute('title', 'Remove');
                     action_remove.classList.add('action');
                     action_remove.classList.add('remove');
-                    action_remove.setAttribute('onclick', 'removeColor(\'' + mkid + '\')');
+                    action_remove.setAttribute('onclick', 'removeColor(\'container_' + mkid + '\')');
+
+                var action_drag = document.createElement('i');
+                    action_drag.setAttribute('title', 'Drag');
+                    action_drag.classList.add('action');
+                    action_drag.classList.add('vertical_scroll');
+                    action_drag.setAttribute('onclick', 'colorBefore(\'container_' + mkid + '\')')
 
                 var container__input = document.createElement('input');
                     container__input.setAttribute('value', _color);
@@ -137,6 +166,7 @@
 
                 container__color_palette.appendChild(container__input);
                 container__color_palette.appendChild(action_remove);
+                container__color_palette.appendChild(action_drag);
 
                 document.getElementById('list_palettes').appendChild(container__color_palette);
 
@@ -151,8 +181,23 @@
                     return;
                 }
 
-                document.getElementById('container_' + _id).remove(); 
+                document.getElementById(_id).remove(); 
                 setGradient(type_def, deg_def);
+            }
+
+            function colorBefore(_id) {
+                var element = document.getElementById(_id);
+                var container = element.parentNode;
+                var childElements = container.children;
+                var index = Array.prototype.indexOf.call(childElements, element);
+
+                if (index > 0) {
+                    container.insertBefore(childElements[index - 1], element);
+                }
+
+                if (index < childElements.length - 1) {
+                    container.insertBefore(childElements[index + 1], element.nextSibling);
+                }
             }
         </script>
     </body>
