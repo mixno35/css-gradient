@@ -55,11 +55,12 @@
                     <ol id="list_palettes">
                     </ol>
                     <button class="button-10" id="action_add__color">Add color</button>
-                    <ul class="tabs_selected">
-                        <li id="tab_linear" class="active">Linear</li>
-                        <li id="tab_radial">Radial</li>
-                    </ul>
                 </div>
+
+                <ul class="tabs_selected">
+                    <li id="tab_linear" class="active">Linear</li>
+                    <li id="tab_radial">Radial</li>
+                </ul>
 
                 <div class="split__lb_inpt" id="split__lb_inpt_deg" style="visibility: visible;">
                     <label for="number_deg_gradient">Enter the gradient rotation radius</label>
@@ -73,8 +74,19 @@
             var type_def = 'linear';
             var deg_def = 180;
 
-            addColor('#8f8f8f');
-            addColor('#d4d4d4');
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+
+            var jsonColorPalette = urlParams.get('cl').trim().replaceAll('_', '#').split(' ');
+
+            if (jsonColorPalette.length >= 2) {
+                for (i2 = 0; i2 < jsonColorPalette.length; i2++) {
+                    addColor(jsonColorPalette[i2]);
+                }
+            } else {
+                addColor('#8f8f8f');
+                addColor('#d4d4d4');
+            }
 
             document.getElementById('tab_linear').addEventListener('click', () => {
                 document.getElementById('tab_radial').classList.remove('active');
@@ -128,7 +140,7 @@
                 var colors = '';
                 for (i = 0; i < palettes.length; i++) {
                     colors += palettes[i].value.toUpperCase();
-                    if (i+1 < palettes.length) {
+                    if ((i + 1) < palettes.length) {
                         colors += ', ';
                     }
                 }
@@ -156,7 +168,7 @@
                     action_drag.setAttribute('title', 'Drag');
                     action_drag.classList.add('action');
                     action_drag.classList.add('vertical_scroll');
-                    action_drag.setAttribute('onclick', 'colorBefore(\'container_' + mkid + '\')')
+                    action_drag.setAttribute('onclick', 'dragColor(\'container_' + mkid + '\')')
 
                 var container__input = document.createElement('input');
                     container__input.setAttribute('value', _color);
@@ -185,7 +197,7 @@
                 setGradient(type_def, deg_def);
             }
 
-            function colorBefore(_id) {
+            function dragColor(_id) {
                 var element = document.getElementById(_id);
                 var container = element.parentNode;
                 var childElements = container.children;

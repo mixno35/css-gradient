@@ -35,6 +35,13 @@ function makeItem(_gradient = 'background-image: linear-gradient(135deg, #FDEB71
         item_action_copy.setAttribute('title', 'Copy');
         item_action_copy.setAttribute('onclick', 'goClipboard("' + _gradient + '")');
 
+    var item_action_palette = document.createElement('li');
+        item_action_palette.classList.add('item');
+        item_action_palette.classList.add('palette');
+        item_action_palette.setAttribute('id', 'item_palette_' + mid);
+        item_action_palette.setAttribute('title', 'Modify');
+
+    container__action_menu.appendChild(item_action_palette);
     container__action_menu.appendChild(item_action_copy);
 
     container_gradient.appendChild(container__action_menu);
@@ -44,11 +51,12 @@ function makeItem(_gradient = 'background-image: linear-gradient(135deg, #FDEB71
 
     document.getElementById('container__palettes').appendChild(main_container);
 
-    appendItemUsedColors(_gradient.split(' '), 'used__color_' + mid);
+    appendItemUsedColors(_gradient.split(' '), mid);
 }
 
 function appendItemUsedColors(_array = '["#FFFFFF"]', _id) {
     setTimeout(() => {
+        var colorGen = '';
         for (i = 0; i < _array.length; i++) {
             if (_array[i].startsWith('#')) {
                 var strRes = _array[i].replaceAll(',', '').replaceAll(':', '').replaceAll('.', '').replaceAll(';', '').replaceAll(')', '').replaceAll('(', '');
@@ -56,8 +64,12 @@ function appendItemUsedColors(_array = '["#FFFFFF"]', _id) {
                     item__used_color.innerText = strRes.toUpperCase();
                     item__used_color.style.color = strRes.toUpperCase();
     
-                    document.getElementById(_id).appendChild(item__used_color);
+                    colorGen += strRes.toUpperCase().replace('#', '_') + ' ';
+
+                    document.getElementById('used__color_' + _id).appendChild(item__used_color);
             }
         }
+
+        document.getElementById('item_palette_' + _id).setAttribute('onclick', 'window.location.href = "palette.html?cl=' + colorGen + '"');
     }, 100);
 }

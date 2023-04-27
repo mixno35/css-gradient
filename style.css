@@ -131,6 +131,8 @@ header img {
     transform: translateY(100%);
     transition: transform .2s, opacity .2s;
     list-style: none;
+    row-gap: 5px;
+    column-gap: 5px;
 }
 .item__action_menu .item {
     padding: 0;
@@ -153,6 +155,9 @@ header img {
 }
 .item__action_menu .item.copy_code {
     background-image: url('copy_code.svg');
+}
+.item__action_menu .item.palette {
+    background-image: url('palette_white.svg');
 }
 
 button.action__fab {
@@ -267,7 +272,7 @@ i.ico.palette {
 .split__lb_inpt label {
     padding: 0;
     margin: 0px 0px 0px 8px;
-    font-family: 'Roboto Slab', sans-serif;
+    font-family: 'Roboto Mono', sans-serif;
     font-weight: 400;
     font-size: 14px;
     color: gray;
@@ -324,7 +329,7 @@ i.ico.palette {
     height: 40px;
     border-radius: 8px;
     border: 1px solid #cecece;
-    background: white;
+    background: #ebebeb;
     box-shadow: 0 3px 10px rgba(0,0,0,.05);
     overflow: hidden;
 }
@@ -344,7 +349,7 @@ i.ico.palette {
     transition: background .2s;
 }
 .tabs_selected li.active {
-    background: #ebebeb;
+    background: white;
 }
 
 /* CSS */
@@ -354,7 +359,7 @@ i.ico.palette {
     align-items: center;
     justify-content: center;
     padding: 6px 14px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
     border-radius: 6px;
     border: none;
     color: #fff;
