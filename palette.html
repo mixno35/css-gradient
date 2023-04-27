@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CSS-Gradient Palette</title>
+        <meta name="description" content="A palette of gradients for quick insertion into css. A large selection of gradients.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css?v=7">
+
+        <link rel="shortcut icon" href="mf/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="mf/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" sizes="57x57" href="mf/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="mf/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="mf/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="mf/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="mf/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="mf/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="mf/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="mf/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="mf/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="mf/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="mf/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="mf/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="mf/favicon-16x16.png">
+        <link rel="manifest" href="mf/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="mf/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+        <meta property="og:title" content="CSS-Gradient Palette">
+        <meta property="og:url" content="#">
+        <meta property="og:image" content="https://mixno35.github.io/css-gradient/cover.png">
+        <meta property="og:site_name" content="mixno35">
+
+        <meta name="twitter:title" content="CSS-Gradient Palette ">
+        <meta name="twitter:description" content="A palette of gradients for quick insertion into css. A large selection of gradients.">
+        <meta name="twitter:image" content=" https://mixno35.github.io/css-gradient/cover.png">
+        <meta name="twitter:card" content="https://mixno35.github.io/css-gradient/mf/apple-icon-180x180.png">
+        <meta name="twitter:image:alt" content="Alt cover image CSS-Gradient">
+    </head>
+    <body>
+        <header id="header__page">
+            <h3><f>CSS-Gradient</f>Palette</h3>
+            <a href="//mixno35.com" target="_blank" rel="noopener noreferrer"><img src="logo.svg" alt="Logo mixno35" srcset="logo.svg"></a>
+        </header>
+
+        <div class="centered__cont_palettes" id="centered__cont_palettes">
+            <div class="container__palette_gen">
+                <div class="container__palette_result" id="container__palette_result"></div>
+
+                <p class="text__result_css" id="text__result_css"></p>
+
+                <div class="container__inputs" id="container__inputs">
+                    <ol id="list_palettes">
+                    </ol>
+                    <button id="action_add__color">Add color</button>
+                </div>
+
+                <div class="split__lb_inpt">
+                    <label for="number_deg_gradient">Enter the gradient rotation radius</label>
+                    <input type="number" id="number_deg_gradient" min="-360" max="360" maxlength="4" minlength="1" value="180">
+                </div>
+            </div>
+        </div>
+
+        <script src="main.js?v=2"></script>
+        <script async defer>
+            addColor('#8f8f8f');
+            addColor('#d4d4d4');
+
+            document.getElementById('number_deg_gradient').addEventListener('change', (e) => {
+                deg_def = e.target.value;
+                setGradient(type_def, deg_def);
+            }, false);
+
+            document.getElementById('action_add__color').addEventListener('click', () => {
+                if (document.getElementsByClassName('palette_color').length == 5) {
+                    alert('Limit colors!');
+                    return;
+                }
+                addColor();
+            });
+
+            function updChangeColor(_event) {
+               console.log(_event.target.value);
+               setGradient(type_def, deg_def);
+            }
+
+            var type_def = 'linear';
+            var deg_def = 180;
+
+            var gh_header = document.getElementById('header__page').offsetHeight;
+                document.getElementById('centered__cont_palettes').style.marginTop = gh_header + 'px';
+
+            setGradient(type_def, deg_def);
+
+            function setGradient(_type = 'linear', _deg = 0) {
+                var palettes = document.getElementsByClassName('palette_color');
+                var deg = _deg + 'deg, ';
+                if (_type == 'radial') {
+                    deg = '';
+                }
+
+                var colors = '';
+                for (i = 0; i < palettes.length; i++) {
+                    colors += palettes[i].value.toUpperCase();
+                    if (i+1 < palettes.length) {
+                        colors += ', ';
+                    }
+                }
+
+                var resultGradirnt = _type + '-gradient(' + deg + colors + ')';
+
+                document.getElementById('text__result_css').innerText = 'background-image: ' + resultGradirnt + ';';
+                document.getElementById('container__palette_result').style.backgroundImage = resultGradirnt;
+            }
+
+            function addColor(_color = '#000000') {
+                var mkid = makeid(10);
+                var container__input = document.createElement('input');
+                    container__input.setAttribute('value', _color);
+                    container__input.setAttribute('type', 'color');
+                    container__input.classList.add('palette_color');
+                    container__input.setAttribute('id', mkid);
+
+                document.getElementById('list_palettes').appendChild(container__input);
+
+                container__input.addEventListener('change', updChangeColor, false);
+
+                setGradient(type_def, deg_def);
+            }
+        </script>
+    </body>
+</html>
