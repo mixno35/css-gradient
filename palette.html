@@ -74,16 +74,21 @@
             var type_def = 'linear';
             var deg_def = 180;
 
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
+            try {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
 
-            var jsonColorPalette = urlParams.get('cl').trim().replaceAll('_', '#').split(' ');
+                var jsonColorPalette = urlParams.get('cl').trim().replaceAll('_', '#').split(' ');
 
-            if (jsonColorPalette.length >= 2) {
-                for (i2 = 0; i2 < jsonColorPalette.length; i2++) {
-                    addColor(jsonColorPalette[i2]);
+                if (jsonColorPalette.length >= 2) {
+                    for (i2 = 0; i2 < jsonColorPalette.length; i2++) {
+                        addColor(jsonColorPalette[i2]);
+                    }
+                } else {
+                    addColor('#8f8f8f');
+                    addColor('#d4d4d4');
                 }
-            } else {
+            } catch {
                 addColor('#8f8f8f');
                 addColor('#d4d4d4');
             }
