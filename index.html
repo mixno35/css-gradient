@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CSS-Gradient Palette</title>
+        <meta name="description" content="Collection CSS Gradient palette">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css?v=2">
+    </head>
+    <body>
+        <header id="header__page">
+            <h3><f>CSS-Gradient</f>Palette</h3>
+            <a href="//mixno35.com" target="_blank" rel="noopener noreferrer"><img src="logo.svg" alt="Logo mixno35" srcset="logo.svg"></a>
+        </header>
+
+        <div class="centered__cont_palettes" id="centered__cont_palettes" style="opacity: 0;">
+            <ul class="container__palettes" id="container__palettes"></ul>
+        </div>
+
+        <script src="main.js"></script>
+        <script src="make-item.js?v=4"></script>
+        <script async defer>
+            var gh_header = document.getElementById('header__page').offsetHeight;
+                document.getElementById('centered__cont_palettes').style.marginTop = gh_header + 'px';
+
+            var jsonFile = new XMLHttpRequest();
+            jsonFile.open('GET', 'gradients.json?v=2', true);
+            jsonFile.send();
+
+            jsonFile.onreadystatechange = function() {
+                if (jsonFile.readyState == 4 && jsonFile.status == 200) {
+                    var jsonResult = JSON.parse(jsonFile.responseText);
+
+                    for (i = 0; i < jsonResult.length; i++) {
+                        makeItem(jsonResult[i], i);
+                    }
+                }
+            }
+
+            setTimeout(() => {
+                document.getElementById('centered__cont_palettes').style.opacity = '1';
+            }, 200);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+html, body {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(246, 246, 246);
+}
+
+header {
+    padding: 0 15px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 64px;
+    background: white;
+    border-bottom: 1px solid rgb(222 222 222);
+    box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    position: fixed;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    top: 0;
+    z-index: 2;
+}
+header h3 {
+    padding: 0;
+    margin: 0;
+    background: -webkit-linear-gradient(229deg, #ff08d3, #1babff 70%, #ff00d9);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Alata', system-ui;
+    font-weight: 500;
+    font-size: 20px;
+}
+header h3 f {
+    font-family: 'Roboto Slab', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    margin-right: 5px;
+}
+header img {
+    padding: 0;
+    margin: 0px 0px 0px 12px;
+    height: 23%;
+    width: auto;
+    opacity: 0.3;
+    position: absolute;
+    right: 15px;
+    bottom: 40%;
+}
+
+.centered__cont_palettes {
+    width: -webkit-fill-available;
+    width: -moz-available;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    transition: opacity .4s;
+}
+.container__palettes {
+    padding: 30px;
+    margin: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    row-gap: 20px;
+    column-gap: 20px;
+    width: fit-content;
+}
+.container__palettes .item__css_gradient {
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 3px 31px rgba(0,0,0,.04);
+    transition: transform .2s, box-shadow .2s;
+    column-gap: 12px;
+    row-gap: 12px;
+}
+.container__palettes .item__css_gradient:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 50px rgba(0,0,0,.1);
+}
+.container__palettes .item__css_gradient .gradinet_container {
+    padding: 0;
+    margin: 0;
+    width: 170px;
+    height: 200px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.used__colors {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-family: 'Roboto Mono', system-ui;
+    font-weight: 400;
+    font-size: 14px;
+    cursor: text;
+}
+
+.item__css_gradient:hover .item__action_menu {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0%);
+}
+.item__action_menu {
+    padding: 8px 8px;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform .2s, opacity .2s;
+    list-style: none;
+}
+.item__action_menu .item {
+    padding: 0;
+    margin: 0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px 18px;
+    opacity: .8;
+    background-color: black;
+    border-radius: 2px;
+}
+.item__action_menu .item:hover {
+    opacity: 1;
+}
+.item__action_menu .item.copy {
+    background-image: url('copy.svg?v=2');
+}
+.item__action_menu .item.copy_code {
+    background-image: url('copy_code.svg');
+}
+
+@media (max-width: 1300px) {
+    .container__palettes {
+        grid-template-columns: auto auto auto auto auto;
+    }
+}
+@media (max-width: 1100px) {
+    .container__palettes {
+        grid-template-columns: auto auto auto auto;
+    }
+}
+@media (max-width: 900px) {
+    .container__palettes {
+        grid-template-columns: auto auto auto;
+    }
+}
+@media (max-width: 700px) {
+    .container__palettes {
+        grid-template-columns: auto auto;
+    }
+}
+@media (max-width: 480px) {
+    .container__palettes {
+        grid-template-columns: auto;
+    }
+}
