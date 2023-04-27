@@ -61,7 +61,7 @@ header img {
     transition: opacity .4s;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
+    /* min-height: 100vh; */
 }
 .container__palettes {
     padding: 30px;
