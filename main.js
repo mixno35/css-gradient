@@ -34,3 +34,13 @@ function fallbackCopyTextToClipboard(_text, _message) {
   
     document.body.removeChild(textArea);
 }
+
+function makeid(length) {
+    var result = '';
+    var characters = 'qwertyuiopasdfghjklzxcvbnm';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}

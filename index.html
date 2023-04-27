@@ -6,7 +6,7 @@
         <title>CSS-Gradient Palette</title>
         <meta name="description" content="A palette of gradients for quick insertion into css. A large selection of gradients.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css?v=3">
+        <link rel="stylesheet" href="style.css?v=4">
 
         <link rel="shortcut icon" href="mf/favicon.ico" type="image/x-icon">
         <link rel="icon" href="mf/favicon.ico" type="image/x-icon">
@@ -49,22 +49,28 @@
             <ul class="container__palettes" id="container__palettes"></ul>
         </div>
 
-        <script src="main.js"></script>
-        <script src="make-item.js?v=4"></script>
+        <script src="main.js?v=2"></script>
+        <script src="make-item.js?v=6"></script>
         <script async defer>
             var gh_header = document.getElementById('header__page').offsetHeight;
                 document.getElementById('centered__cont_palettes').style.marginTop = gh_header + 'px';
 
-            var jsonFile = new XMLHttpRequest();
-            jsonFile.open('GET', 'gradients.json?v=2', true);
-            jsonFile.send();
+                loadGR();
 
-            jsonFile.onreadystatechange = function() {
-                if (jsonFile.readyState == 4 && jsonFile.status == 200) {
-                    var jsonResult = JSON.parse(jsonFile.responseText);
+            function loadGR(_type = 'linear') {
+                document.getElementById('container__palettes').innerHTML = '';
 
-                    for (i = 0; i < jsonResult.length; i++) {
-                        makeItem(jsonResult[i], i);
+                var jsonFile = new XMLHttpRequest();
+                jsonFile.open('GET', 'gradients.json?v=3', true);
+                jsonFile.send();
+
+                jsonFile.onreadystatechange = function() {
+                    if (jsonFile.readyState == 4 && jsonFile.status == 200) {
+                        var jsonResult = JSON.parse(jsonFile.responseText);
+
+                        for (i = 0; i < jsonResult.length; i++) {
+                            makeItem(jsonResult[i], i, _type);
+                        }
                     }
                 }
             }

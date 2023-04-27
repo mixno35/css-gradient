@@ -104,6 +104,7 @@ header img {
     font-weight: 400;
     font-size: 14px;
     cursor: text;
+    text-transform: uppercase;
 }
 
 .item__css_gradient:hover .item__action_menu {
@@ -159,6 +160,13 @@ header img {
 @media (max-width: 1100px) {
     .container__palettes {
         grid-template-columns: auto auto auto auto;
+    }
+}
+@media (max-width: 980px) {
+    .item__action_menu {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 @media (max-width: 900px) {
