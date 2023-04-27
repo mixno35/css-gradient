@@ -6,7 +6,7 @@
         <title>CSS-Gradient Palette</title>
         <meta name="description" content="A palette of gradients for quick insertion into css. A large selection of gradients.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css?v=7">
+        <link rel="stylesheet" href="style.css?v=8">
 
         <link rel="shortcut icon" href="mf/favicon.ico" type="image/x-icon">
         <link rel="icon" href="mf/favicon.ico" type="image/x-icon">
@@ -54,7 +54,7 @@
                 <div class="container__inputs" id="container__inputs">
                     <ol id="list_palettes">
                     </ol>
-                    <button id="action_add__color">Add color</button>
+                    <button class="button-10" id="action_add__color">Add color</button>
                 </div>
 
                 <div class="split__lb_inpt">
@@ -118,16 +118,40 @@
 
             function addColor(_color = '#000000') {
                 var mkid = makeid(10);
+
+                var container__color_palette = document.createElement('div');
+                    container__color_palette.classList.add('palette__choise');
+                    container__color_palette.setAttribute('id', 'container_' + mkid);
+
+                var action_remove = document.createElement('i');
+                    action_remove.setAttribute('title', 'Remove');
+                    action_remove.classList.add('action');
+                    action_remove.classList.add('remove');
+                    action_remove.setAttribute('onclick', 'removeColor(\'' + mkid + '\')');
+
                 var container__input = document.createElement('input');
                     container__input.setAttribute('value', _color);
                     container__input.setAttribute('type', 'color');
                     container__input.classList.add('palette_color');
                     container__input.setAttribute('id', mkid);
 
-                document.getElementById('list_palettes').appendChild(container__input);
+                container__color_palette.appendChild(container__input);
+                container__color_palette.appendChild(action_remove);
+
+                document.getElementById('list_palettes').appendChild(container__color_palette);
 
                 container__input.addEventListener('change', updChangeColor, false);
 
+                setGradient(type_def, deg_def);
+            }
+
+            function removeColor(_id) {
+                if (document.getElementsByClassName('palette_color').length < 3) {
+                    alert('Minimus 2 color!');
+                    return;
+                }
+
+                document.getElementById('container_' + _id).remove(); 
                 setGradient(type_def, deg_def);
             }
         </script>
