@@ -1,22 +1,28 @@
-function makeItem(_gradient = 'background-image: linear-gradient(135deg, #FDEB71 10%, #F8D800 100%);', _position = 0, _type = 'linear') {
+function makeItem(_arraYColors = ["#F60000", "#F87000"], _position = 0, _type = 'linear') {
     var gr_deg = '180deg, ';
 
-    if (_type == 'linear') {
-        _gradient = _gradient.replace('linear-gradient(', _type + '-gradient(' + gr_deg);
-    } else if (_type == 'radial') {
-        _gradient = _gradient.replace('linear-gradient(', _type + '-gradient(');
-    }
-    
     var mid = makeid(10);
+
+    var result_colors = '';
+
+    for (i2 = 0; i2 < _arraYColors.length; i2++) {
+        result_colors += _arraYColors[i2];
+        if ((i2 + 1) < _arraYColors.length) {
+            result_colors += ', ';
+        }
+    }
+
+    var colorRes = 'linear-gradient(' + gr_deg + result_colors + ')';
+    var colorResCSS = 'background-image: linear-gradient(' + gr_deg + result_colors + ');';
 
     var main_container = document.createElement('li');
         main_container.classList.add('item__css_gradient');
         main_container.setAttribute('id', 'item__css_gradient_' + mid);
-        main_container.setAttribute('title', _gradient);
+        main_container.setAttribute('title', colorResCSS);
 
     var container_gradient = document.createElement('div');
         container_gradient.classList.add('gradinet_container');
-        container_gradient.setAttribute('style', _gradient);
+        container_gradient.style.backgroundImage = colorRes;
 
     var container_used_colors = document.createElement('ul');
         container_used_colors.classList.add('used__colors');
@@ -27,13 +33,9 @@ function makeItem(_gradient = 'background-image: linear-gradient(135deg, #FDEB71
 
     var item_action_copy = document.createElement('li');
         item_action_copy.classList.add('item');
-        if (_gradient.length > 20) {
-            item_action_copy.classList.add('copy_code');
-        } else {
-            item_action_copy.classList.add('copy');
-        }
+        item_action_copy.classList.add('copy_code');
         item_action_copy.setAttribute('title', 'Copy');
-        item_action_copy.setAttribute('onclick', 'goClipboard("' + _gradient + '")');
+        item_action_copy.setAttribute('onclick', 'goClipboard("' + colorResCSS + '")');
 
     var item_action_palette = document.createElement('li');
         item_action_palette.classList.add('item');
@@ -51,20 +53,19 @@ function makeItem(_gradient = 'background-image: linear-gradient(135deg, #FDEB71
 
     document.getElementById('container__palettes').appendChild(main_container);
 
-    appendItemUsedColors(_gradient.split(' '), mid);
+    appendItemUsedColors(_arraYColors, mid);
 }
 
-function appendItemUsedColors(_array = '["#FFFFFF"]', _id) {
+function appendItemUsedColors(_array = ["#F60000", "#F87000"], _id) {
     setTimeout(() => {
         var colorGen = '';
         for (i = 0; i < _array.length; i++) {
             if (_array[i].startsWith('#')) {
-                var strRes = _array[i].replaceAll(',', '').replaceAll(':', '').replaceAll('.', '').replaceAll(';', '').replaceAll(')', '').replaceAll('(', '');
                 var item__used_color = document.createElement('li');
-                    item__used_color.innerText = strRes.toUpperCase();
-                    item__used_color.style.color = strRes.toUpperCase();
+                    item__used_color.innerText = _array[i].toUpperCase();
+                    item__used_color.style.color = _array[i].toUpperCase();
     
-                    colorGen += strRes.toUpperCase().replace('#', '_') + ' ';
+                    colorGen += _array[i].toUpperCase().replace('#', '_') + ' ';
 
                     document.getElementById('used__color_' + _id).appendChild(item__used_color);
             }

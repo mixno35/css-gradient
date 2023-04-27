@@ -54,7 +54,7 @@
         </a>
 
         <script src="main.js?v=2"></script>
-        <script src="make-item.js?v=8"></script>
+        <script src="make-item.js?v=9"></script>
         <script async defer>
             var gh_header = document.getElementById('header__page').offsetHeight;
                 document.getElementById('centered__cont_palettes').style.marginTop = gh_header + 'px';
@@ -65,7 +65,7 @@
                 document.getElementById('container__palettes').innerHTML = '';
 
                 var jsonFile = new XMLHttpRequest();
-                jsonFile.open('GET', 'gradients.json?v=3', true);
+                jsonFile.open('GET', 'gradients.json?v=4', true);
                 jsonFile.send();
 
                 jsonFile.onreadystatechange = function() {
