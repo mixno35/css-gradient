@@ -2,13 +2,13 @@
     $(document).ready(function () {
         var is_dragging;
         is_dragging = false;
-        $(document).on('mousedown touchstart', '.circle', function (e) {
+        $('.circle').on('mousedown touchstart', '.circle', function (e) {
             return is_dragging = true;
         });
-        $(document).on('mouseup touchend', function (e) {
+        $('.circle').on('mouseup touchend', function (e) {
             return is_dragging = false;
         });
-        return $(window).on('mousemove touchmove', function (e) {
+        return $('.circle').on('mousemove touchmove', function (e) {
             var angle, center_x, center_y, circle, delta_x, delta_y, pos_x, pos_y, touch;
             if (is_dragging) {
                 circle = $('.circle');
@@ -29,7 +29,6 @@
                 }
                 angle = Math.round(angle);
                 $('.dot').css('transform', 'rotate(' + angle + 'deg)');
-                //   $('#number_deg_gradient').value(angle + '');
                 document.getElementById('number_deg_gradient').value = angle;
                 deg_def = angle;
                 setGradient(type_def, deg_def);
