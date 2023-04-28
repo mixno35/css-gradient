@@ -6,7 +6,7 @@
         <title>CSS-Gradient Palette</title>
         <meta name="description" content="A palette of gradients for quick insertion into css. A large selection of gradients.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style.css?v=12">
+        <link rel="stylesheet" href="style.css?v=13">
 
         <link rel="shortcut icon" href="mf/favicon.ico" type="image/x-icon">
         <link rel="icon" href="mf/favicon.ico" type="image/x-icon">
@@ -53,8 +53,10 @@
             <button class="action__fab" id="button__palette"><i class="ico palette"></i></button>
         </a>
 
-        <script src="main.js?v=2"></script>
-        <script src="make-item.js?v=9"></script>
+        <script src="html2canvas/html2canvas.js"></script>
+        <script src="html2canvas/html2canvas.min.js"></script>
+        <script src="main.js?v=3"></script>
+        <script src="make-item.js?v=10"></script>
         <script async defer>
             var gh_header = document.getElementById('header__page').offsetHeight;
                 document.getElementById('centered__cont_palettes').style.marginTop = gh_header + 'px';
@@ -84,13 +86,16 @@
             }, 200);
         </script>
 
+        <div id="element-to-download" style="width: 512px;height: 512px;position: absolute;left: -100%;padding: 0;
+        margin: 0;border: none;"></div>
+
         <footer>
             <h3>This is my author's project, developed by me personally, without using other people's developments.
                 <br/>
                 <br/>Icons: <a href="//iconscout.com" target="_blank" rel="noopener noreferrer">IconScout</a>
                 <br/>Fonts: <a href="//fonts.google.com" target="_blank" rel="noopener noreferrer">Google Fonts</a>
                 <br/>
-                <br/><a href="LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a> <a href="//github.com/mixno35/css-gradient" target="_blank" rel="noopener noreferrer">Repository</a>
+                <br/><a href="LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a> <a href="//github.com/mixno35/css-gradient" target="_blank" rel="noopener noreferrer">Repository</a> <a href="//html2canvas.hertzen.com/" target="_blank" rel="noopener noreferrer">html2canvas</a>
                 <br/><a href="//mixno35.com" target="_blank" rel="noopener noreferrer">Copyright (c) 2023 Alexander Mikhno</a>
             </h3>
         </footer>

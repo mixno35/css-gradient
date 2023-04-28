@@ -44,3 +44,16 @@ function makeid(length) {
     }
     return result;
 }
+
+function downloadImage(_color) {
+    var element = document.getElementById('element-to-download');
+    element.style.backgroundImage = _color;
+    html2canvas(element).then(function(canvas) {
+        var link = document.createElement('a');
+        document.body.appendChild(link);
+        link.download = 'image-gradient-' + makeid(10) + '.png';
+        link.href = canvas.toDataURL();
+        link.target = '_blank';
+        link.click();
+    });
+}

@@ -34,15 +34,22 @@ function makeItem(_arraYColors = ["#F60000", "#F87000"], _position = 0, _type = 
     var item_action_copy = document.createElement('li');
         item_action_copy.classList.add('item');
         item_action_copy.classList.add('copy_code');
-        item_action_copy.setAttribute('title', 'Copy');
+        item_action_copy.setAttribute('title', 'Copy CSS code');
         item_action_copy.setAttribute('onclick', 'goClipboard("' + colorResCSS + '")');
 
     var item_action_palette = document.createElement('li');
         item_action_palette.classList.add('item');
         item_action_palette.classList.add('palette');
         item_action_palette.setAttribute('id', 'item_palette_' + mid);
-        item_action_palette.setAttribute('title', 'Modify');
+        item_action_palette.setAttribute('title', 'Open in palette');
 
+    var item_action_download = document.createElement('li');
+        item_action_download.classList.add('item');
+        item_action_download.classList.add('download');
+        item_action_download.setAttribute('onclick', 'downloadImage("' + colorRes + '")');
+        item_action_download.setAttribute('title', 'Download image');
+
+    container__action_menu.appendChild(item_action_download);
     container__action_menu.appendChild(item_action_palette);
     container__action_menu.appendChild(item_action_copy);
 

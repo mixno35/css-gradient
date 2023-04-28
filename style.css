@@ -160,6 +160,9 @@ header img {
 .item__action_menu .item.palette {
     background-image: url('palette_white.svg');
 }
+.item__action_menu .item.download {
+    background-image: url('download.svg');
+}
 
 button.action__fab {
     padding: 20px;
@@ -208,7 +211,7 @@ i.ico.palette {
     width: 100%;
     height: 250px;
     background: linear-gradient(0deg, #8f8f8f, #d4d4d4);
-    border-radius: 8px;
+    border-radius: 6px;
 }
 
 .container__inputs {
@@ -247,7 +250,7 @@ i.ico.palette {
 .container__inputs ol input[type="color"] {
     width: -webkit-fill-available;
     width: -moz-available;
-    border-radius: 8px;
+    border-radius: 6px;
     padding: 10px 10px;
     height: 46px;
     border: 1px solid #cecece;
@@ -286,7 +289,7 @@ i.ico.palette {
     background: white;
     box-shadow: 0 2px 10px rgba(0,0,0,.05);
     cursor: text;
-    border-radius: 8px;
+    border-radius: 6px;
     height: 40px;
     font-family: 'Roboto Mono', monospace;
 }
@@ -307,7 +310,7 @@ i.ico.palette {
     background: white;
     box-shadow: 0 2px 10px rgba(0,0,0,.05);
     cursor: text;
-    border-radius: 8px;
+    border-radius: 6px;
     font-family: 'Roboto Mono', monospace;
     margin-left: 10px;
 }
@@ -342,7 +345,7 @@ i.ico.palette {
     display: flex;
     align-items: center;
     height: 40px;
-    border-radius: 8px;
+    border-radius: 6px;
     border: 1px solid #cecece;
     background: #ebebeb;
     box-shadow: 0 3px 10px rgba(0,0,0,.05);
@@ -365,6 +368,18 @@ i.ico.palette {
 }
 .tabs_selected li.active {
     background: white;
+}
+
+.hor_buttons {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.hor_buttons button {
+    width: 100%;
 }
 
 /* CSS */
@@ -391,6 +406,118 @@ i.ico.palette {
 .button-10:focus {
     box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
     outline: 0;
+}
+
+/* CSS */
+.button-3 {
+    appearance: none;
+    background-color: #2ea44f;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    height: 40px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.button-3:focus:not(:focus-visible):not(.focus-visible) {
+    box-shadow: none;
+    outline: none;
+}
+
+.button-3:hover {
+    background-color: #2c974b;
+}
+
+.button-3:focus {
+    box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+    outline: none;
+}
+
+.button-3:disabled {
+    background-color: #94d3a2;
+    border-color: rgba(27, 31, 35, .1);
+    color: rgba(255, 255, 255, .8);
+    cursor: default;
+}
+
+.button-3:active {
+    background-color: #298e46;
+    box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+/* CSS */
+.button-4 {
+    appearance: none;
+    background-color: #FAFBFC;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    height: 40px;
+    display: inline-block;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+    position: relative;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+}
+
+.button-4:hover {
+    background-color: #F3F4F6;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+
+.button-4:disabled {
+    background-color: #FAFBFC;
+    border-color: rgba(27, 31, 35, 0.15);
+    color: #959DA5;
+    cursor: default;
+}
+
+.button-4:active {
+    background-color: #EDEFF2;
+    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+    transition: none 0s;
+}
+
+.button-4:focus {
+    outline: 1px transparent;
+}
+
+.button-4:before {
+    display: none;
+}
+
+.button-4:-webkit-details-marker {
+    display: none;
 }
 
 footer {
