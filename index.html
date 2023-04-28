@@ -56,7 +56,7 @@
         <script src="html2canvas/html2canvas.js"></script>
         <script src="html2canvas/html2canvas.min.js"></script>
         <script src="main.js?v=3"></script>
-        <script src="make-item.js?v=10"></script>
+        <script src="make-item.js?v=11"></script>
         <script async defer>
             var gh_header = document.getElementById('header__page').offsetHeight;
                 document.getElementById('centered__cont_palettes').style.marginTop = gh_header + 'px';
@@ -67,7 +67,7 @@
                 document.getElementById('container__palettes').innerHTML = '';
 
                 var jsonFile = new XMLHttpRequest();
-                jsonFile.open('GET', 'gradients.json?v=5', true);
+                jsonFile.open('GET', 'gradients.json?v=6', true);
                 jsonFile.send();
 
                 jsonFile.onreadystatechange = function() {

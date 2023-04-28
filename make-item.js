@@ -70,7 +70,7 @@ function appendItemUsedColors(_array = ["#F60000", "#F87000"], _id) {
             if (_array[i].startsWith('#')) {
                 var item__used_color = document.createElement('li');
                     item__used_color.innerText = _array[i].toUpperCase();
-                    item__used_color.style.color = _array[i].toUpperCase();
+                    item__used_color.style.color = _array[i].toUpperCase().split(' ')[0];
     
                     colorGen += _array[i].toUpperCase().replace('#', '_') + ' ';
 

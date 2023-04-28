@@ -38,4 +38,6 @@
         });
     });
 
+    document.getElementsByClassName('circle')[0].querySelector('.dot').style.transform = 'rotate(180deg)';
+
 }).call(this);
