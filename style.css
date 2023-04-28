@@ -366,9 +366,19 @@ i.ico.palette {
     overflow: hidden;
     transition: background .2s;
 }
+.tabs_selected hr {
+    width: 1px;
+    height: 100%;
+    border: none;
+    background: #cecece;
+}
+.tabs_selected li:hover {
+    background: #f1f1f1;
+}
 .tabs_selected li.active {
     background: white;
 }
+
 
 .hor_buttons {
     padding: 0;
